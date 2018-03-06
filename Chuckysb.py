@@ -3145,9 +3145,73 @@ def bot(op):
                     num=(num+1)
                 msgs+="\n═════════List Member═════════\n\nTotal Members : %i" % len(group)
                 ehun.sendText(msg.to, msgs)
-
-            
-
+    #--------------- SC Add Admin ---------
+            elif "Admin add @" in msg.text:
+              if msg.from_ in owner:
+                print "[Command]Staff add executing"
+                _name = msg.text.replace("Admin add @","")
+                _nametarget = _name.rstrip('  ')
+                gs = cl.getGroup(msg.to)
+                targets = []
+                for g in gs.members:
+                    if _nametarget == g.displayName:
+                        targets.append(g.mid)
+                if targets == []:
+                   random.choice(KAC).sendText(msg.to,"Contact not found")
+                else:
+                   for target in targets:
+                        try:
+                            admin.append(target)
+                            ehun.sendText(msg.to,"Admin Ditambahkan")
+                        except:
+                            pass
+                print "[Command]Staff add executed"
+              else:
+                ehun.sendText(msg.to,"Perintah Ditolak.")
+                ehun.sendText(msg.to,"Hanya Owner Yang bisa Gunain Perintah ini.")
+                
+            elif "Admin remove @" in msg.text:
+              if msg.from_ in owner:
+                print "[Command]Staff remove executing"
+                _name = msg.text.replace("Admin remove @","")
+                _nametarget = _name.rstrip('  ')
+                gs = ehun.getGroup(msg.to)
+                gs = ki.getGroup(msg.to)
+                gs = kk.getGroup(msg.to)
+                gs = kc.getGroup(msg.to)
+                gs = ks.getGroup(msg.to)
+                gs = k1.getGroup(msg.to)
+                gs = k2.getGroup(msg.to)
+                gs = k3.getGroup(msg.to)
+                targets = []
+                for g in gs.members:
+                    if _nametarget == g.displayName:
+                        targets.append(g.mid)
+                if targets == []:
+                   random.choice(KAC).sendText(msg.to,"Contact not found")
+                else:
+                   for target in targets:
+                        try:
+                            admin.remove(target)
+                            ehun.sendText(msg.to,"Admin Dihapus")
+                        except:
+                            pass
+                print "[Command]Staff remove executed"
+              else:
+                ehun.sendText(msg.to,"Perintah Ditolak.")
+                ehun.sendText(msg.to,"Hanya Owner Yang bisa Gunain Perintah ini.")
+                   
+            elif msg.text in ["Adminlist","adminlist"]:
+              if admin == []:
+                  ehun.sendText(msg.to,"The stafflist is empty")
+              else:
+                  ehun.sendText(msg.to,"Tunggu...")
+                  mc = "||Admin Ehun Bot||\n=====================\n"
+                  for mi_d in admin:
+                      mc += "••>" +ehun.getContact(mi_d).displayName + "\n"
+                  ehun.sendText(msg.to,mc)
+                  print "[Command]Stafflist executed"
+    #--------------------------------------
  
             elif "Getvid @" in msg.text:
                 print "[Command]dp executing"
