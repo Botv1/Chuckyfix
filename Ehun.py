@@ -8,7 +8,11 @@ from bs4 import BeautifulSoup
 from threading import Thread
 from googletrans import Translator
 from gtts import gTTS
-import time,random,sys,json,codecs,threading,glob,urllib,urllib2,urllib3,re,ast,os,subprocess,requests,tempfile
+import time,random,sys,json,codecs,threading,glob,urllib,urllib2,urllib3,re,ast,os,subprocess,requests,tempfile 
+from pyowm import OWM
+from random import randint
+import time, random, sys, re, os, json
+import subprocess, threading, string,codecs, requests, tweepy, ctypes, urllib, urllib2, wikipedia,cookielib,urllib3
 
 ehun = LINETCR.LINE()
 ehun.login(token="EqqBiuMQ2KnndnlTGC88.9sY37/mZOkHTT1mJDPli2a./isGk/tnXt4+tEdmD2fNNGpESDZwOMY+ykUVjG0jCXI=")
@@ -67,6 +71,8 @@ botMessage ="""
 ╠═════════════════════════
 ╠➩〘Absen〙
 ╠➩〘Respon〙
+|>Salam
+|>Pagi/Siang/Sore/malam
 ╠➩〘Runtime〙
 ╠➩〘Mycopy @〙
 ╠➩〘Copycontact〙
@@ -244,6 +250,7 @@ helpMessage ="""
 ╠➩〘Speed〙
 ╠➩〘Speed test〙
 ╠➩〘Status〙
+|☆ Admin Nrs ☆
 ╠═════════════════════════
 ║     by Ehun http://line.me/ti/p/sarehun
 ╚═════════════════════════
@@ -311,6 +318,8 @@ wait = {
     "Simi":{},    
     "lang":"JP",
     "BlGroup":{}
+#    "pname":{},
+ #   "picon":{},
 }
 
 settings = {
@@ -327,6 +336,8 @@ wait2 = {
     "readPoint":{},
     "readMember":{},
     "setTime":{},
+    "pname":{},
+    "proname":{},
     "ROM":{}
     }
     
@@ -339,13 +350,13 @@ mimic = {
 
 setTime = {}
 setTime = wait2['setTime']
-mulai = time.time() 
+mulai = time.time()
 
 def download_page(url):
     version = (3,0)
     cur_version = sys.version_info
-    if cur_version >= version:     
-        import urllib,request    
+    if cur_version >= version:
+        import urllib,request
         try:
             headers = {}
             headers['User-Agent'] = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36"
@@ -355,7 +366,7 @@ def download_page(url):
             return respData
         except Exception as e:
             print(str(e))
-    else:                        
+    else:
         import urllib2
         try:
             headers = {}
@@ -370,7 +381,7 @@ def download_page(url):
 
 def _images_get_next_item(s):
     start_line = s.find('rg_di')
-    if start_line == -1:    
+    if start_line == -1:
         end_quote = 0
         link = "no_links"
         return link, end_quote
@@ -389,16 +400,16 @@ def _images_get_all_items(page):
         if item == "no_links":
             break
         else:
-            items.append(item)      
-            time.sleep(0.1)        
+            items.append(item)
+            time.sleep(0.1)
             page = page[end_content:]
     return items
-    
+
 def waktu(secs):
     mins, secs = divmod(secs,60)
     hours, mins = divmod(mins,60)
     return '%02d Jam %02d Menit %02d Detik' % (hours, mins, secs)      
-    
+
 def cms(string, commands): #/XXX, >XXX, ;XXX, ^XXX, %XXX, $XXX...
     tex = ["+","@","/",">",";","^","%","$","＾","サテラ:","サテラ:","サテラ：","サテラ："]
     for texX in tex:
@@ -563,13 +574,87 @@ def bot(op):
 
 
         if op.type == 55:
-	    try:
+ 	    try:
 	      group_id = op.param1
 	      user_id=op.param2
 	      subprocess.Popen('echo "'+ user_id+'|'+str(op.createdTime)+'" >> dataSeen/%s.txt' % group_id, shell=True, stdout=subprocess.PIPE, )
 	    except Exception as e:
 	      print e
 	      
+        if op.type == 11:
+            if op.param3 == '1':
+                if op.param1 in wait['pname']:
+                    try:
+                        G = ehun.getGroup(op.param1)
+                    except:
+                        try:
+                            G = ehun1.getGroup(op.param1)
+                        except:
+                            pass
+
+                    G.name = wait['pro_name'][op.param1]
+                    try:
+                        ehun.updateGroup(G)
+                    except:
+                        try:
+                            ehun1.updateGroup(G)
+                        except:
+                            pass
+
+                    if op.param2 in ken:
+                        pass
+                    else:
+                        try:
+                            ehun1.kickoutFromGroup(op.param1,[op.param2])
+                        except:
+                            pass
+                        ehun.sendText(op.param1,"please do not change group name-_-")
+                        c = Message(to=op.param1, from_=None, text=None, contentType=13)
+                        c.contentMetadata={'mid':op.param2}
+                        ehun.sendMessage(c)
+
+        if op.type == 13:
+                if op.param3 in mid:
+                    if op.param2 in Amid:
+                        G = ehun1.getGroup(op.param1)
+                        G.preventJoinByTicket = False
+                        ehun1.updateGroup(G)
+                        Ticket = ehun1.reissueGroupTicket(op.param1)
+                        ehun.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        G.preventJoinByTicket = True
+                        ehun1.updateGroup(G)
+                        Ticket = ehun1.reissueGroupTicket(op.param1)
+
+                if op.param3 in Amid:
+                    if op.param2 in mid:
+                        X = ehun.getGroup(op.param1)
+                        X.preventJoinByTicket = False
+                        ehun.updateGroup(X)
+                        Ti = ehun.reissueGroupTicket(op.param1)
+                        ehun1.acacceptGroupInvitationByTicketceptGroupInvitationByTicket(op.param1,Ticket)
+                        X.preventJoinByTicket = True
+                        ehun.updateGroup(X)
+                        Ti = ehun.reissueGroupTicket(op.param1)
+
+        if op.type == 15:
+            if wait["autorein"] == True:
+               if op.param2 in admin:
+                  klist=[ehun,ehun1]
+                  kicker = random.choice(klist)
+                  kicker.inviteIntoGroup(op.param1,[op.param2])
+
+        if op.type == 32:
+            if not op.param2 in Bots and admin:
+                if wait["protectionOn"] == True:
+                    try:
+                        klist=[ehun,ehun1]
+                        kicker = random.choice(klist)
+                        X = kicker.getGroup(op.param1)
+                        kicker.kickoutFromGroup(op.param1,[op.param2])
+                        kicker.inviteIntoGroup(op.param1, [op.param3])
+                    except Exception, e:
+                       print e
+
         if op.type == 55:
                 try:
                     if cctv['cyduk'][op.param1]==True:
@@ -1378,6 +1463,66 @@ def bot(op):
                 else:
                     ehun.sendText(msg.to,"Can not be used outside the group")
  
+            elif "'" in msg.text:
+                if msg.from_ in admin:
+                  if msg.toType == 2:
+                    print "ok"
+                    _name = msg.text.replace("'","")
+                    gs = ehun1.getGroup(msg.to)
+                    ehun.sendText(msg.to,"Diam ya boss")
+                    targets = []
+                    for g in gs.members:
+                        if _name in g.displayName:
+                            targets.append(g.mid)
+                    if targets == []:
+                        ehun.sendText(msg.to,"Pembersihan")
+                    else:
+                        for target in targets:
+                          if not target in Bots:
+                            if not target in admin:
+                               try:
+                                klist=[ehun1]
+                                kicker=random.choice(klist)
+                                kicker.kickoutFromGroup(msg.to,[target])
+                                print (msg.to,[g.mid])
+                               except:
+                                ehun.sendText(msg.to,"Group di bersih kan")
+
+            elif "Namelock on" in msg.text:
+                if msg.from_ in admin:
+                  if msg.to in wait['pname']:
+                    ehun.sendText(msg.to,'Saip di lock')
+                else:
+                    ehun.sendText(msg.to,"Udah di lock boss")
+                    wait['pname'][msg.to] = True
+                    wait['pro_name'][msg.to] = ehun.getGroup(msg.to).name
+
+            elif "Namelock off" in msg.text:
+                if msg.from_ in admin:
+                  if msg.to in wait['pname']:
+                    ehun.sendText(msg.to,"Namelock ƠƑƑ.")
+                    del wait['pname'][msg.to]
+                else:
+                    ehun.sendText(msg.to,"Udah ƠƑƑ")
+
+            elif "Iconlock on" in msg.text:
+                if msg.from_ in admin:
+                  if msg.to in wait['picon']:
+                    ehun.sendText(msg.to,"Icon dah di lock")
+                else:
+                    ehun.sendText(msg.to,"Udah di lock boss")
+                    wait['picon'][msg.to] = True
+                    wait['pro_icon'][msg.to] = ehun.getGroup(msg.to).icon
+
+            elif "Iconlock off" in msg.text:
+                if msg.from_ in admin:
+                  if msg.to in wait['picon']:
+                    ehun.sdndText(msg.to,"Iconlock udah off boss")
+                    del wait['picon'][mzg.to]
+                else:
+                    ehun.senText(msg.to,"Icon udah off")
+
+
             elif msg.text in ["Join on","Autojoin on"]:
 		if msg.from_ in admin:
                     wait["AutoJoin"] = True
@@ -2546,6 +2691,7 @@ def bot(op):
 
             elif msg.text in ["Spam"]:
                 ehun.sendText(msg.to, "Blum di edit bos \nMau Spam apa bos \nSilah kn edit dulu")
+                ehun1.sendText(msg.to, "😉😉😉😉😉😉😉😉😉😉😉")
 
             elif msg.text in ["Salam","Assalamu'alaikum","Assalamualaikum"]:
                 ehun.sendText(msg.to, "Wa'alaikum salam kakak \nKakak apa kabar?")
@@ -2565,8 +2711,43 @@ def bot(op):
             elif msg.text in ["Malam","Malam all","Malam semuanya","Met malam all"]:
                 ehun.sendText(msg.to, "Malam juga kakak \nCepat bobok ya kak \nSmoga mimpi indah \n& Besok bangun nya seger kak!!!")
 
-            elif msg.text in ["Kak ehun","Kak Ehun","Kak","Abang","Bang Ehun","Bang ehun"]:
-                ehun.sendText(msg.to, "Hadir kak, ada apa manggil boss \nBoss gi tidur kak. ")
+            elif msg.text in ["@আডা‮‮─┅═ই ","Kak ehun","Bang","Kak Ehun","Kak","Abang","Bang Ehun","Bang ehun"]:
+                msg.contentType = 13
+                msg.contentMetadata = {'mid': 'ub3808de9f7df35f57fb366d157f9790a'}
+                ehun.sendText(msg.to, "Hadir kak, \nSaya asisten boss \nAda apa manggil boss kak? \nBosslagi tidur \n👨‍🚀👨‍🚀👨‍🚀👨‍🚀👨‍🚀👨‍🚀👨‍")
+                ehun.sendMessage(msg)
+                ehun.sendText(msg.to, "Itu kak boss kami!!\nAdd ya kak \nId line \nHttp://line.me/ti/p/~sarehun")
+
+            elif msg.text in ["@NAORA "," Naura","NAORA"]:
+                msg.contentType = 13
+                msg.contentMetadata = {'mid': "u908522fd38bcbad73012db77cd6e6718"}
+                ehun.sendText(msg.to, "===================================")
+                ehun.sendMessage(msg)
+                ehun.sendText(msg.to, "Itu kak\nKak NAORA yg doyan ngemil kak.\nKenalin ya kak!!\nItu contact nya😉")
+
+
+            elif msg.text in ["Staf NRS","Staf nrs","Admin nrs","Staf Nrs","Admin Nrs","Admin NRS"]:
+                msg.contentType = 13
+                msg.contentMetadata = {'mid': 'ubd905f5dd28b6d1adba8f056ac7e951b'}
+                ehun.sendText(msg.to, "Tunggu sebentar boss")
+                ehun.sendMessage(msg)
+                msg.contentMetadata = {'mid': 'u2905e5e104d94a56bd711045affb9fb3'}
+                ehun.sendMessage(msg)
+                msg.contentMetadata = {'mid': 'uc70e6d1d8ab2061a666aabde3a1f0001'}
+                ehun.sendMessage(msg)
+                msg.contentMetadata = {'mid': 'ub13556b9d2ac6d6c1cd435a037347b8c'}
+                ehun.sendMessage(msg)
+                msg.contentMetadata = {'mid': 'ue2135381c415fc2253639066570346f2'}
+                ehun.sendMessage(msg)
+                ehun.sendText(msg.to, "Itu kak kenal kan\nStaf staf 👉@NRS_FAMILY👈 \nSemua nya kece kak 😆😆😆😆😆")
+
+
+            elif msg.text in ["Mm Nrs","Mm nrs","Mem Nrs","Mem nrs","Member Nrs","Member nrs"]:
+                msg.contentType = 13
+                msg.contentMetadata = {'mid': "u908522fd38bcbad73012db77cd6e6718"}
+                ehun.sendText(msg.to, "tunggu sebentar boss")
+                ehun.sendMessage(msg)
+                ehun.sendText(msg.to, "Itu kak Member \n👉@NRS_FAMILY👈\nCantik cantik\n&Ganteng ganteng ya kak🤣")
 
 
             elif msg.text in ["Absen"]:
@@ -2722,12 +2903,12 @@ def bot(op):
                                 pass
 
  
-            elif "Kickall" == msg.text:
+            elif "Sapu" == msg.text:
 		    if msg.from_ in Creator:
                      if msg.toType == 2:
-                        print "Kick all member"
-                        _name = msg.text.replace("Kickall","")
-                        gs = nadya.getGroup(msg.to)
+                        print "Sapu member"
+                        _name = msg.text.replace("Sapu","")
+                        gs = ehun.getGroup(msg.to)
                         ehun.sendText(msg.to,"Dadaaah~")
                         targets = []
                         for g in gs.members:
