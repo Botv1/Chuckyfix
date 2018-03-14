@@ -9,10 +9,8 @@ from threading import Thread
 from googletrans import Translator
 from gtts import gTTS
 import time,random,sys,json,codecs,threading,glob,urllib,urllib2,urllib3,re,ast,os,subprocess,requests,tempfile 
-from pyowm import OWM
 from random import randint
 import time, random, sys, re, os, json
-import subprocess, threading, string,codecs, requests, tweepy, ctypes, urllib, urllib2, wikipedia,cookielib,urllib3
 
 ehun = LINETCR.LINE()
 ehun.login(token="EqqBiuMQ2KnndnlTGC88.9sY37/mZOkHTT1mJDPli2a./isGk/tnXt4+tEdmD2fNNGpESDZwOMY+ykUVjG0jCXI=")
