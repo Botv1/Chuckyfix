@@ -3937,7 +3937,7 @@ def bot(op):
                     _list = ""
                     for i in gid:
                         if i is not None:
-                            gids = nadya.getGroup(i)
+                            gids = ehun.getGroup(i)
                             _list += gids.name
                             ehun.acceptGroupInvitation(i)
                         else:
