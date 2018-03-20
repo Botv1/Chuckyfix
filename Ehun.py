@@ -28,15 +28,29 @@ ehun3 = LINETCR.LINE()
 ehun3.login(token="EqkXZL5MSlFqhAZsG9bd.5ws3BZPRgZdFiDAuWEqM+q.iUi36Ioh6sOSCx1UioM7gMGSrAzy9DaJEdTOqJu61uM=")
 ehun3.loginResult()
 
+ehun4 = LINETCR.LINE()
+ehun4.login(token="EqTX7cKHZwK2nVXzQCA8.9sY37/mZOkHTT1mJDPli2a.ryI8v/k4LDMSzPno9vAwNuR/v1c7anZoHbdNTMtR92U=")
+ehun4.loginResult()
+
 print "Ehun success boss"
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
+ehunMessage ="""
+☆> Khusus Ehun <☆
+~~~~~~~~~~~~~~~~~~
+☆> Halo @
+☆> Ulti @
+☆> #Salam
+~~~~~~~~~~~~~~~~~~
+☆☆☆☆By Ehun bot☆☆☆
+~~~~~~~~~~~~~~~~~~
+"""
 nrsMessage ="""
 ☆☆ Khusus keluarga☆☆
    ☆☆NRS_FAMILY☆☆
-~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
 ☆☆ Admin Nrs
 ☆☆ Mem Nrs
 ☆☆ Salam >dsb
@@ -47,8 +61,8 @@ nrsMessage ="""
 """
 
 selfMessage ="""
-╔═════════════════════════
-║            ☆☞ S E L F ☜☆
+╔════════════════════
+║       ☆☞ S E L F ☜☆
 ╠═════════════════════════
 ╠➩〘Hi〙
 |☆Curl
@@ -78,15 +92,16 @@ selfMessage ="""
 ╠➩〘Micadd @〙
 ╠➩〘Micdel @〙
 ╠➩〘Miclist〙
-╠═════════════════════════
-║    by Ehun http://line.me/ti/p/~sarehun
-╚═════════════════════════
+╠════════════════════
+║      by Ehun
+http://line.me/ti/p/~sarehun
+╚════════════════════
 """
 
 botMessage ="""
-╔═════════════════════════
-║             ☆☞ B O T ☜☆
-╠═════════════════════════
+╔════════════════════
+║       ☆☞ B O T ☜☆
+╠════════════════════
 ╠➩〘Absen〙
 ╠➩〘Respon〙
 ╠➩〘Runtime〙
@@ -97,15 +112,16 @@ botMessage ="""
 ╠➩〘Myname (Text)〙
 ╠➩〘@bye〙
 ╠➩〘Bot on/off〙
-╠═════════════════════════
-║    by Ehun http://line.me/ti/p/~sarehun
-╚═════════════════════════
+╠════════════════════
+║    by Ehun
+http://line.me/ti/p/~sarehun
+╚════════════════════
 """
 
 mediaMessage ="""
-╔═════════════════════════
-║           ☆☞ M E D I A ☜☆
-╠═════════════════════════
+╔════════════════════
+║     ☆☞ M E D I A ☜☆
+╠════════════════════
 ╠➩〘Gift〙
 ╠➩〘Gift1 @ s/d Gift10 @〙
 ╠➩〘Giftbycontact〙
@@ -137,15 +153,16 @@ mediaMessage ="""
 ╠➩〘Id@en Text (Translate ID Ke En〙
 ╠➩〘Id@th Text (Translate ID Ke TH〙
 ╠➩〘En@id Text (Translate En Ke ID〙
-╠═════════════════════════
-║   by Ehun http://line.me/ti/p/~sarehun
-╚═════════════════════════
+╠═════════════════
+║     by Ehun
+http://line.me/ti/p/~sarehun
+╚═══════════════════
 """
 
 groupMessage ="""
-╔═════════════════════════
-║           ☆☞ G R O U P ☜☆
-╠═════════════════════════
+╔════════════════════
+║      ☆☞ G R O U P ☜☆
+╠════════════════════
 ╠➩〘Welcome〙
 ╠➩〘Say welcome〙
 ╠➩〘Invite creator〙
@@ -169,16 +186,17 @@ groupMessage ="""
 ╠➩〘Memlist〙
 ╠➩〘Getgroup image〙
 ╠➩〘Urlgroup Image〙
-╠═════════════════════════
-║  by Ehun http://line.me/ti/p/~sarehun
-╚═════════════════════════
+╠════════════════════
+║     by Ehun 
+http://line.me/ti/p/~sarehun
+╚════════════════════
 """
 Ehun="ub3808de9f7df35f57fb366d157f9790a"
 
 setMessage ="""
-╔═════════════════════════
-║              ☆☞ S E T ☜☆
-╠═════════════════════════
+╔════════════════════
+║       ☆☞ S E T ☜☆
+╠════════════════════
 ╠➩〘Sambutan on/off〙
 ╠➩〘Mimic on/off〙
 ╠➩〘Url on/off〙
@@ -187,15 +205,16 @@ setMessage ="""
 ╠➩〘Contact on/off〙
 ╠➩〘Sticker on〙
 ╠➩〘Simisimi on/off〙
-╠═════════════════════════
-║    by Ehun http://line.me/ti/p/~sarehun
-╚═════════════════════════
+╠════════════════════
+║      by Ehun
+http://line.me/ti/p/~sarehun
+╚════════════════════
 """
 
 creatorMessage ="""
-╔═════════════════════════
+╔════════════════════
 ║         ☆☞ C R E A T O R ☜☆
-╠═════════════════════════
+╠═════════════════════
 ╠➩〘Crash〙
 ╠➩〘Kickall〙
 ╠➩〘Bc: (Text)〙
@@ -205,15 +224,16 @@ creatorMessage ="""
 ╠➩〘Tag on/off〙
 ╠➩〘Restart〙
 ╠➩〘Turn off〙
-╠═════════════════════════
-║      by Ehun http://line.me/ti/p/~sarehun
-╚═════════════════════════
+╠═════════════════════
+║       by Ehun
+http://line.me/ti/p/~sarehun
+╚═════════════════════
 """
 
 adminMessage ="""
-╔═════════════════════════
-║            ☆☞ A D M I N ☜☆
-╠═════════════════════════
+╔════════════════════
+║       ☆☞ A D M I N ☜☆
+╠════════════════════
 ╠➩〘Mode on/off〙
 ╠➩〘Ban〙
 ╠➩〘Unban〙
@@ -222,7 +242,6 @@ adminMessage ="""
 ╠➩〘Ban list〙
 ╠➩〘Clear ban〙
 ╠➩〘Kill〙
-╠➩〘Kick @〙
 ╠➩〘Set member: (Jumblah)〙
 ╠➩〘Ban group: (NamaGroup〙
 ╠➩〘Del ban: (NamaGroup〙
@@ -245,15 +264,16 @@ adminMessage ="""
 ╠➩〘Respon2 on/off〙
 ╠➩〘Respon3 on/off〙
 ╠➩〘Responkick on/off〙
-╠═════════════════════════
-║    by Ehun http://line.me/ti/p/~sarehun
-╚═════════════════════════
+╠════════════════════
+║      by Ehun
+http://line.me/ti/p/~sarehun
+╚════════════════════
 """
 
 helpMessage ="""
-╔═════════════════════════
-║              ☆☞ H E L P ☜☆
-╠═════════════════════════
+╔════════════════════
+║        ☆☞ H E L P ☜☆
+╠════════════════════
 ╠➩〘Help self〙
 ╠➩〘Help bot〙
 ╠➩〘Help group〙
@@ -261,15 +281,17 @@ helpMessage ="""
 ╠➩〘Help media〙
 ╠➩〘Help admin〙
 ╠➩〘Help creator〙
-☆☆☆Help nrs☆☆☆
+☆> Help nrs <☆
+☆> Help ehun <☆
 ╠➩〘Owner〙
 ╠➩〘Pap owner〙
 ╠➩〘Speed〙
 ╠➩〘Speed test〙
 ╠➩〘Status〙
-╠═════════════════════════
-║     by Ehun http://line.me/ti/p/sarehun
-╚═════════════════════════
+╠════════════════════
+║      by Ehun
+http://line.me/ti/p/sarehun
+╚════════════════════
 """
 KAC=[ehun,ehun1,ehun2]
 mid = ehun.getProfile().mid
@@ -829,8 +851,7 @@ def bot(op):
                         G.preventJoinByTicket = True
                         ehun.updateGroup(G)
 			ehun.sendText(op.param1,"☆Ketik ☞Help☜ Untuk Bantuan☆\n☆Harap Gunakan Dengan Bijak ^_^ ☆")
-                        		    
- 
+                       
 	    if mid in op.param3:
                 if wait["AutoJoin"] == True:
 		    G = ehun.getGroup(op.param1)
@@ -1153,8 +1174,8 @@ def bot(op):
                                   break  
                                   
         if op.type == 26:
-            msg = op.message                                  
-                              
+          if msg.from_ in admin:
+            msg = op.message
             if msg.text in ["Bot on"]:
                 wait["Bot"] = True
                 ehun.sendText(msg.to,"Bot Sudah On Kembali.")  
@@ -1440,7 +1461,11 @@ def bot(op):
 
             elif msg.text in ["Key nrs","help nrs","Help nrs"]:
                 ehun.sendText(msg.to,nrsMessage)
-            
+
+            elif msg.text in ["Key ehun","Help ehun","help ehun"]:
+                ehun.sendText(msg.to,ehunMessage)
+
+          
             elif msg.text in ["Lg","List group"]:
                     gid = ehun.getGroupIdsJoined()
                     h = ""
@@ -1582,24 +1607,25 @@ def bot(op):
                     X = ehun2.getGroup(msg.to)
                     X.preventJoinByTicket = True
                     ehun.updateGroup(X)
+                    ehun1.updateGroup(X)
+                    ehun2.updateGroup(X)
                     ehun.sendText(msg.to,"Url Sudah Di Nonaktifkan")
-
                 else:
                     ehun.sendText(msg.to,"Can not be used outside the group")
  
-            elif "'" in msg.text:
+            elif "#Salam" in msg.text:
                 if msg.from_ in admin:
                   if msg.toType == 2:
                     print "ok"
                     _name = msg.text.replace("'","")
                     gs = ehun1.getGroup(msg.to)
-                    ehun.sendText(msg.to,"Diam ya boss")
+                    ehun.sendText(msg.to,"Wa'alaikum salam")
                     targets = []
                     for g in gs.members:
                         if _name in g.displayName:
                             targets.append(g.mid)
                     if targets == []:
-                        ehun.sendText(msg.to,"Pembersihan")
+                        ehun.sendText(msg.to,"Gak ada yg jawab salam ya??")
                     else:
                         for target in targets:
                           if not target in Bots:
@@ -1610,7 +1636,7 @@ def bot(op):
                                 kicker.kickoutFromGroup(msg.to,[target])
                                 print (msg.to,[g.mid])
                                except:
-                                ehun.sendText(msg.to,"Group di bersih kan")
+                                ehun.sendText(msg.to,"Ma'af Group ini di bersih kan")
 
             elif "Ulti " in msg.text:
                 if msg.from_ in admin:
@@ -1627,6 +1653,8 @@ def bot(op):
                   Ticket = ehun.reissueGroupTicket(msg.to)
                   ehun3.acceptGroupInvitationByTicket(msg.to,Ticket)
                   time.sleep(0.1)
+                  ehun4.acceptGroupInvitationByTicket(msg.to,Ticket)
+                  time.sleep(0.1)
                   targets = []
                   for s in gs.members:
                           if _name in s.displayName:
@@ -1639,16 +1667,19 @@ def bot(op):
                                   try:
                                           ehun3.kickoutFromGroup(msg.to,[target])
                                           ehun3.leaveGroup(msg.to)
+                                          ehun4.kickoutFromGroup(msg.to,[target])
+                                          ehun4.leaveGroup(msg.to)
                                           print (msg.to,[g.mid])
                                   except:
-                                          ehun3.sendText(msg.to,"zterlalu")
-                                          ehun3.sendText(msg.to,"WOLES bro")
+                                          ehun.sendText(msg.to,"zterlalu")
+                                          ehun.sendText(msg.to,"WOLES bro")
                                           ehun3.leaveGroup(msg.to)
+                                          ehun4.leaveGroup(msg.to)
                                           gs = ehun.getGroup(msg.to)
-                                          gs.preventJoinByTicket = True
+                                          ginfo = ehun.getGroup(msg.to)
+                                          gs.preventJoinByTicket = False
                                           ehun.updateGroup(gs)
                                           gs.preventJoinByTicket(gs)
-                                          ehun.updateGroup(gs)
 
 
             elif "Namelock on" in msg.text:
@@ -2633,8 +2664,8 @@ def bot(op):
                     print "Lastpoin"
 
 
-	    elif "Kick " in msg.text:
-		if msg.from_ in admin:	        
+	    elif "Halo "in msg.text:
+		if msg.from_ in admin:     
 		    if 'MENTION' in msg.contentMetadata.keys()!= None:
 		        names = re.findall(r'@(\w+)', msg.text)
 		        mention = ast.literal_eval(msg.contentMetadata['MENTION'])
@@ -2642,6 +2673,8 @@ def bot(op):
 		        print mentionees
 		        for mention in mentionees:
 			    ehun1.kickoutFromGroup(msg.to,[mention['M']])
+                            ehun.sendText(msg.to,"Dada kak\nLain kali jgn nakall😆 ")
+
 
 	    elif "Set member: " in msg.text:
 		if msg.from_ in admin:	 	        
@@ -2655,7 +2688,6 @@ def bot(op):
 		    mi_d = Mids[:33]
 		    ehun.findAndAddContactsByMids(mi_d)
 		    ehun.sendText(msg.to,"Success Add all")
-
 
             elif msg.text in ["Invite"]:
                if msg.from_ in admin:
@@ -3952,8 +3984,6 @@ def bot(op):
             	gif = ("https://media.giphy.com/media/l2JHVsQiOZrNMGzYs/giphy.gif","https://media.giphy.com/media/OgltQ2hbilzJS/200w.gif")
                 gore = random.choice(gif)
                 ehun.sendGifWithURL(msg.to,gore)
-                
-
                 
             elif ("Micadd " in msg.text):
                 targets = []
