@@ -48,8 +48,6 @@ Di Termux :
 - Ketik -> `cd Chucky`
 - Ketik -> `python2 Chucky.py`
 
-
-Credit By@ Nadya Sutjiadi.
 ------
 - `Follow My Instagram : Ehun`
 - `Add My LINE : http://line.me/ti/p/~sarehun
